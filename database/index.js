@@ -1,7 +1,7 @@
 const dummyData = require('./dummyData');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://ec2-34-232-66-148.compute-1.amazonaws.com:27017/vital', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/vital', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const itemSchema = new mongoose.Schema({
   id: { type: String, required: true },
