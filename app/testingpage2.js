@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Content from '../components/Content';
-import { dummyData as initialDummyData } from '../data/dummyData';
+import { dummyData as initialDummyData } from '../database/dummyData';
 
 export default function Home() {
   const [dummyData, setDummyData] = useState(initialDummyData);

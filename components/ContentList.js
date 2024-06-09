@@ -2,25 +2,24 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Content from './Content';
-import { dummyData as initialDummyData } from '../data/dummyData';
 
-export default function ContentList() {
-  const [dummyData, setDummyData] = useState(initialDummyData);
+export default function ContentList({ items }) {
+  const [contentData, setContentData] = useState(items);
   const [draggedItem, setDraggedItem] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const dragImageRef = useRef(null);
 
   useEffect(() => {
-    dummyData.forEach((item) => {
+    contentData.forEach((item) => {
       const img = document.createElement('img');
       img.src = item.image;
     });
-  }, [dummyData]);
+  }, [contentData]);
 
   const handleDragStart = (index, event) => {
     setDraggedIndex(index);
-    setDraggedItem(dummyData[index]);
+    setDraggedItem(contentData[index]);
 
     const dragImage = document.createElement('div');
     dragImage.style.width = '288px';
@@ -34,14 +33,14 @@ export default function ContentList() {
     dragImage.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
 
     const img = document.createElement('img');
-    img.src = dummyData[index].image;
+    img.src = contentData[index].image;
     img.width = 45;
     img.height = 45;
     img.style.marginRight = '10px';
     dragImage.appendChild(img);
 
     const text = document.createElement('p');
-    text.innerText = dummyData[index].title;
+    text.innerText = contentData[index].title;
     text.style.fontWeight = 'bold';
     text.style.fontSize = '17px';
     dragImage.appendChild(text);
@@ -58,11 +57,11 @@ export default function ContentList() {
 
   const handleDrop = (index) => {
     if (draggedItem) {
-      const items = [...dummyData];
-      items.splice(draggedIndex, 1);
-      items.splice(index, 0, draggedItem);
+      const updatedItems = [...contentData];
+      updatedItems.splice(draggedIndex, 1);
+      updatedItems.splice(index, 0, draggedItem);
 
-      setDummyData(items);
+      setContentData(updatedItems);
       setDraggedItem(null);
       setDraggedIndex(null);
       setHoveredIndex(null);
@@ -83,7 +82,7 @@ export default function ContentList() {
     <section className="z-10 w-full flex justify-center pb-10 px-5">
       <div className="contentContainer lg:w-[55%] rounded-lg border-1 border-gray-500 shadow-2xl overflow-hidden">
         <ul>
-          {dummyData.map((content, index) => (
+          {contentData.map((content, index) => (
             <li
               key={content.id}
               draggable

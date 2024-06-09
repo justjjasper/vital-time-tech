@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Content from './Content';
-import { dummyData as initialDummyData } from '../data/dummyData';
+import { dummyData as initialDummyData } from '../database/dummyData';
 
 export default function ContentList() {
   const [dummyData, setDummyData] = useState(initialDummyData);
