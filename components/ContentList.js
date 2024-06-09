@@ -79,7 +79,7 @@ export default function ContentList({ items }) {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/items', {
+      const response = await fetch('http://ec2-34-232-66-148.compute-1.amazonaws.com:3001/items', {
         method: 'PUT',
         body: JSON.stringify(contentData),
         headers: {

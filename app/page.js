@@ -5,7 +5,7 @@ import Content from '../components/Content';
 
 export default async function Home() {
   try {
-    const data = await fetch('http://127.0.0.1:3001/items');
+    const data = await fetch('http://ec2-34-232-66-148.compute-1.amazonaws.com:3001/items');
     const items = await data.json();
 
     return (
