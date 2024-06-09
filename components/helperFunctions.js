@@ -1,6 +1,3 @@
-'use client'
-import { useEffect } from 'react'
-
 export const handleDragStart = (index, event) => {
   setDraggedIndex(index);
   setDraggedItem(contentData[index]);
@@ -39,7 +36,7 @@ export const handleDragOver = (index) => {
   setHoveredIndex(index);
 };
 
-const handleDrop = (index) => {
+export const handleDrop = (index) => {
   if (draggedItem) {
     const updatedItems = [...contentData];
     updatedItems.splice(draggedIndex, 1);
@@ -49,33 +46,5 @@ const handleDrop = (index) => {
     setDraggedItem(null);
     setDraggedIndex(null);
     setHoveredIndex(null);
-  }
-};
-
-export const handleDragEnd = async () => {
-  setDraggedItem(null);
-  setDraggedIndex(null);
-  setHoveredIndex(null);
-  if (dragImageRef.current) {
-    document.body.removeChild(dragImageRef.current);
-    dragImageRef.current = null;
-  }
-
-  try {
-    const response = await fetch('http://ec2-34-232-66-148.compute-1.amazonaws.com:3001/items', {
-      method: 'PUT',
-      body: JSON.stringify(contentData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (!response.ok) {
-      throw new Error('Failed to update items');
-    }
-    const updatedItems = await response.json();
-    setContentData(updatedItems); // Update the state with the new order
-    console.log('Items updated successfully');
-  } catch (error) {
-    console.error('Error updating items:', error);
   }
 };
