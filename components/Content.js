@@ -3,7 +3,7 @@ import { locationSVG } from '/public/assets/icons';
 
 export default function Content({ image, title, location }) {
   return (
-    <div className='contentInfoContainer flex items-center px-10 py-4 bg-white'>
+    <div className='contentInfoContainer flex items-center px-5 sm:px-10 py-4 bg-white'>
       <Image
         src={image}
         alt={`${title} image`}
