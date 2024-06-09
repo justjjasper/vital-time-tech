@@ -29,7 +29,7 @@ export default function ContentList({ items }) {
     dragImage.style.alignItems = 'center';
     dragImage.style.backgroundColor = 'white';
     dragImage.style.border = '1.5px solid gray';
-    dragImage.style.padding = '5px';
+    dragImage.style.padding = '10px';
     dragImage.style.borderRadius = '4px';
     dragImage.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
 
