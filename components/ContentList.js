@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Content from './Content';
 
 export default function ContentList({ items }) {
-  const [contentData, setContentData] = useState(items);
+  const [contentData, setContentData] = useState(items || []);
   const [draggedItem, setDraggedItem] = useState(null);
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const dragImageRef = useRef(null);
 
+  // Preload images
   useEffect(() => {
     contentData.forEach((item) => {
       const img = document.createElement('img');
@@ -68,7 +69,7 @@ export default function ContentList({ items }) {
     }
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd = async () => {
     setDraggedItem(null);
     setDraggedIndex(null);
     setHoveredIndex(null);
@@ -76,10 +77,28 @@ export default function ContentList({ items }) {
       document.body.removeChild(dragImageRef.current);
       dragImageRef.current = null;
     }
+
+    try {
+      const response = await fetch('http://localhost:3001/items', {
+        method: 'PUT',
+        body: JSON.stringify(contentData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update items');
+      }
+      const updatedItems = await response.json();
+      setContentData(updatedItems); // Update the state with the new order
+      console.log('Items updated successfully');
+    } catch (error) {
+      console.error('Error updating items:', error);
+    }
   };
 
   return (
-    <section className="z-10 w-full flex justify-center pb-10 px-5">
+    <section className="contentSection z-10 w-full flex justify-center pb-10 px-5">
       <div className="contentContainer lg:w-[55%] rounded-lg border-1 border-gray-500 shadow-2xl overflow-hidden">
         <ul>
           {contentData.map((content, index) => (

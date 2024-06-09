@@ -23,17 +23,9 @@ async function insertDummyData() {
     }
   } catch (error) {
     console.error('Error inserting dummy data:', error);
-  } finally {
-    mongoose.connection.close();
   }
 }
 
 insertDummyData().catch(err => console.error(err));
 
-const read = () => {
-  return Item.find({})
-    .then(val => val)
-    .catch(err => { console.log('Error in getting items from the back end', err); });
-};
-
-module.exports = { read, Item };
+module.exports = { Item };

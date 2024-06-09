@@ -10,7 +10,6 @@ export default function Header() {
           width={550}
           height={400}
         />
-        <button>Fet it</button>
       </div>
     </section>
   )
