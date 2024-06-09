@@ -1,7 +1,7 @@
 # Vital Time Tech - Technical Test
 
 ## Overview
-This project is a technical test for Vital Time Tech, built using Next.js and Tailwind CSS. It is deployed on an AWS EC2 Ubuntu instance and utilizes a responsive web design. The backend is hosted with Node.js and Express, retrieving data from MongoDB. The Next.js Fetch API is used to fetch and update data.
+This draggable list project is a technical test for Vital Time Tech, built using Next.js and Tailwind CSS. It is deployed on an AWS EC2 Ubuntu instance and utilizes a responsive web design. The backend is hosted with Node.js and Express, retrieving data from MongoDB. The Next.js Fetch API is used to fetch and update data.
 <img width="1296" alt="Screen Shot 2024-06-08 at 11 12 38 PM" src="https://github.com/justjjasper/vital-time-tech/assets/98243819/fd73bec1-58b8-4f7b-a91a-79f3c116afa8">
 
 ## Technologies Used
